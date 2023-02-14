@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+*{
+    margin: 0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color:#3A84FE ;
+}
+main{
+    background-color: #ffffFf;
+    border-radius: 7px;
+    margin: 80px auto;
+    max-width: 800px;
+    min-height: 300px;
+}
+
+.todoTitle p{
+    margin-top: 10px;
+}
+
+.todoForm{
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.todoForm input{
+    margin: 10px 5px;
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    border:1px solid rgba(118, 118, 118,0.5) ;
+    border-radius: 7px;
+}
+#descriptionTask{
+    width: 60%;
+}
+
+.todoForm input[type="button"]{
+    width: 10%;
+
+}
+
+.todoListHeader{
+    padding: 15px;
+    border-bottom: 1px solid rgba(118, 118, 118,0.7);
+}
+
+.todoListFilter{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px;
+}
+.todoListFilter p {
+    margin-right: 10px;
+}
+
+.listOfTasks{
+    padding: 15px;
+}
+
+.taskCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.taskCard p{
+    padding-top:10px;
+}
+
+.checkboxDiv{
+    width: 5%;
+}
+
+.titleDiv{
+    width: 25%;
+}
+
+.descriptionDiv{
+    width: 55%;
+}
+
+.taskButtons{
+    width: 12%;
+}
+.taskDescription{
+    display: flex;
+    flex-wrap:wrap;
+}
+.checkboxDiv{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+#uncheckedCheckBox{
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #767676;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    z-index: 100;
+    position: relative;
+}
+
+#checkedCheckBox{
+    display: block;
+    width: 9px;
+    height: 9px;
+    margin-left:-12px;
+    margin-bottom:5px;
+    background-color: black;
+    z-index: 999;
+    position: relative;
+}
+
+.taskButtonsDiv input{
+    width: 50px;
+}
