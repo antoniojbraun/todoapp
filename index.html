@@ -10,59 +10,69 @@
 </head>
 <body>
     <main class="container">
-        <div class="todoTitle">
-            <h1>Todo List</h1>
-            <p>Fill the fields bellow to add your tasks!</p>
-        </div>
-        <div class="todoForm">
-            <input type="text" placeholder="Here`s the title of your task..." id="titleTask">
-            <input type="text" placeholder="Write a description of your task.." id="descriptionTask">
-        </div>
-        <div class="todoList">
-            <div class="todoListHeader">
+        <div class="todoListHeader">
+            <div class="todoTitle">
+                <h1>Todo List</h1>
+                <p>Fill the fields bellow to add your tasks!</p>
+            </div>
+            <div class="todoForm">
+                <input type="text" placeholder="Here`s the title of your task..." id="titleTask">
+                <input placeholder="Write a description of your task.." id="descriptionTask">
+                <input type="button" value="Add">
+            </div>
+            <div class="todoListFilter">
                 <p>All</p>
                 <p>Pending</p>
                 <p>Completed</p>
                 <p>Clear All</p>
             </div>
-            <div class="todoListTasks">
+        </div>
+        <div class="listOfTasks">
+            <div class="taskCard">
                 <div class="checkboxDiv">
                     <div id="uncheckedCheckBox"></div>
                     <div id="checkedCheckBox"></div>
                 </div>
-                <div class="tastText">
-                    <p id="tastTitle">Study Coding</p>
-                    <p class="taskDescription">Study freebootcamp.org for at least 2 hours</p>
+                <div class="titleDiv">
+                    <p id="titleId">Reply pending emails</p>
                 </div>
-                <div class="taskButtons">
+                <div class="descriptionDiv">
+                    <p id="descriptionId">To reply all my pending emails</p>
+                </div>
+                <div class="taskButtonsDiv">
                     <input type="button" value="Edit">
                     <input type="button" value="Delete">
                 </div>
             </div>
-            <div class="todoListTasks">
+
+            <div class="taskCard">
                 <div class="checkboxDiv">
                     <div id="uncheckedCheckBox"></div>
                     <div id="checkedCheckBox"></div>
                 </div>
-                <div class="tastText">
-                    <p id="tastTitle">Reply pending emails</p>
-                    <p class="taskDescription">To reply all my pending emails</p>
+                <div class="titleDiv">
+                    <p id="titleId">Study Coding</p>
                 </div>
-                <div class="taskButtons">
+                <div class="descriptionDiv">
+                    <p id="descriptionId">Study freebootcamp.org for at least 2 hours</p>
+                </div>
+                <div class="taskButtonsDiv">
                     <input type="button" value="Edit">
                     <input type="button" value="Delete">
                 </div>
             </div>
-            <div class="todoListTasks">
+            <div class="taskCard">
                 <div class="checkboxDiv">
                     <div id="uncheckedCheckBox"></div>
                     <div id="checkedCheckBox"></div>
                 </div>
-                <div class="tastText">
-                    <p id="tastTitle">Go for a walk</p>
-                    <p class="taskDescription">Walk at least 3 km in the morning</p>
+                <div class="titleDiv">
+                    <p id="titleId">Go for a walk</p>
                 </div>
-                <div class="taskButtons">
+                <div class="descriptionDiv">
+                    <p id="descriptionId">Walk at least 3 km in the morning</p>
+                </div>
+                <div class="taskButtonsDiv">
                     <input type="button" value="Edit">
                     <input type="button" value="Delete">
                 </div>
