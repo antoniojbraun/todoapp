@@ -14,7 +14,7 @@ main{
     border-radius: 7px;
     margin: 80px auto;
     max-width: 800px;
-    min-height: 300px;
+    min-height: 250px;
 }
 
 .todoTitle p{
@@ -97,7 +97,7 @@ main{
     align-items: end;
     justify-content: center;
 }
-#uncheckedCheckBox{
+.unCheckedCheckBox{
     display: block;
     width: 15px;
     height: 15px;
@@ -108,8 +108,7 @@ main{
     position: relative;
 }
 
-#checkedCheckBox{
-    display: none;
+.checkedCheckBox{
     width: 9px;
     height: 9px;
     margin-left:-12px;
@@ -117,6 +116,10 @@ main{
     background-color: black;
     z-index: 999;
     position: relative;
+}
+
+[id*=checkboxDiv]:hover{
+    cursor: pointer;
 }
 
 .taskButtonsDiv{

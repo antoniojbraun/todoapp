@@ -13,7 +13,8 @@ cancelButton.addEventListener("click",cancelEdit)
 function addTask () { 
     let obj = {
         title: titleTask.value,
-        description: descriptionTask.value
+        description: descriptionTask.value,
+        check: false
     }   
     vetor.push(obj)
     listTasks()
@@ -30,7 +31,7 @@ function listTasks(){
         // Create taskCard div, define a css Class and put into listOfTasks
         let taskCard = document.createElement("div")
         let checkboxDiv = document.createElement("div")
-        let uncheckedCheckBox = document.createElement("div")
+        let unCheckedCheckBox = document.createElement("div")
         let checkedCheckBox = document.createElement("div")
         let titleDiv = document.createElement("div")
         let titleId = document.createElement("p")
@@ -44,8 +45,17 @@ function listTasks(){
         taskCard.classList.add(`taskCard`)
         taskCard.id = `taskCard-${ind}`
         checkboxDiv.classList.add("checkboxDiv")
-        uncheckedCheckBox.id = "uncheckedCheckBox"
-        checkedCheckBox.id = "checkedCheckBox"
+        checkboxDiv.id = `checkboxDiv-${ind}`
+        checkboxDiv.addEventListener('click',markCheckBox)
+
+        
+        unCheckedCheckBox.classList.add("unCheckedCheckBox")
+        unCheckedCheckBox.id = `unCheckedCheckBox-${ind}`
+
+        checkedCheckBox.classList.add("checkedCheckBox")
+        checkedCheckBox.id = `checkedCheckBox-${ind}`
+        checkedCheckBox.style.display = "none"
+
         titleDiv.classList.add("titleDiv")
         titleId.id = "titleId"
         descriptionDiv.classList.add("descriptionDiv")
@@ -63,7 +73,7 @@ function listTasks(){
         deleteButton.value = "Delete"
         deleteButton.setAttribute("onclick",`deleteTask(${ind})`)
 
-        checkboxDiv.appendChild(uncheckedCheckBox)
+        checkboxDiv.appendChild(unCheckedCheckBox)
         checkboxDiv.appendChild(checkedCheckBox)
         taskCard.appendChild(checkboxDiv)
         titleDiv.appendChild(titleId)
@@ -110,4 +120,11 @@ function deleteTask(id){
 function cleanInputs(){
     titleTask.value = ""
     descriptionTask.value = ""
+}
+
+function markCheckBox(e){
+    let id = (e.target.id).split('-')
+    id = id[1]
+    let checkedCheckBoxTemp = document.getElementById(`checkedCheckBox-${id}`)
+    checkedCheckBoxTemp.style.display = checkedCheckBoxTemp.style.display === "none" ? "block" : "none";
 }
