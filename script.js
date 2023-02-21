@@ -14,7 +14,7 @@ function addTask () {
     let obj = {
         title: titleTask.value,
         description: descriptionTask.value,
-        check: false
+        checked: false
     }   
     vetor.push(obj)
     listTasks()
@@ -86,6 +86,8 @@ function listTasks(){
         listOfTasks.appendChild(taskCard)
         titleId.innerHTML = task.title
         descriptionIdP.innerHTML = task.description
+
+        if(vetor[ind].checked) checkUncheck(ind)
     })
 }
 
@@ -125,6 +127,21 @@ function cleanInputs(){
 function markCheckBox(e){
     let id = (e.target.id).split('-')
     id = id[1]
+    checkUncheck(id)
+    listTasks()
+}
+
+function checkUncheck(id){
     let checkedCheckBoxTemp = document.getElementById(`checkedCheckBox-${id}`)
-    checkedCheckBoxTemp.style.display = checkedCheckBoxTemp.style.display === "none" ? "block" : "none";
+    let taskCardTemp = document.getElementById(`taskCard-${id}`)
+    if(checkedCheckBoxTemp.style.display === "none") {
+        checkedCheckBoxTemp.style.display = "block"
+        taskCardTemp.classList.add("textMarked")
+        vetor[id].checked = true
+        console.log(vetor)
+    }else{
+        checkedCheckBoxTemp.style.display = "none"
+        taskCardTemp.classList.remove("textMarked")
+        vetor[id].checked = false
+    }   
 }
