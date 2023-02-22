@@ -16,11 +16,21 @@
                 <p>Fill the fields bellow to add your tasks!</p>
             </div>
             <div class="todoForm">
-                <input type="text" placeholder="Here`s the title of your task..." id="titleTask">
-                <input placeholder="Write a description of your task.." id="descriptionTask">
-                <input type="button" value="Add" id="addButton">
-                <input type="button" value="Edit" id="editButton">
-                <input type="button" value="Cancel" id="cancelButton">
+                <div class="titleTaskDiv">                   
+                    <input type="text" placeholder="Here`s the title of your task..." id="titleTask">
+                    <p id="titleTaskAlert" hidden>The title field must be filled.</p>
+                </div>
+                <div class="descriptionTaskDiv">
+                    <input placeholder="Write a description of your task.." id="descriptionTask">
+                    <p id="descriptionTaskAlert" hidden>The description field must be filled.</p>
+                </div>
+                <div class="buttonsDiv">
+                    <input type="button" value="Add" id="addButton">
+                    <input type="button" value="Edit" id="editButton">
+                    <input type="button" value="Cancel" id="cancelButton">
+                </div>
+                
+                
             </div>
             <div class="todoListFilter">
                 <p id="allTasks">All</p>

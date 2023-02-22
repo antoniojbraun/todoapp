@@ -29,21 +29,41 @@ main{
 }
 
 .todoForm input{
-    margin: 10px 5px;
-    width: 30%;
+    margin-bottom: 3px;
     height: 40px;
+    width: 100%;
     padding: 10px;
     border:1px solid rgba(118, 118, 118,0.5) ;
     border-radius: 7px;
 }
+
 #descriptionTask{
-    width: 60%;
+    width: 100%;
 }
 
 .todoForm input[type="button"]{
-    width: 10%;
-
+    width: 100%;
 }
+
+.titleTaskDiv{
+    margin-right:5px;
+    width: 30%;
+}
+.descriptionTaskDiv{
+    width: 60%;
+    margin-right:5px;
+}
+.buttonsDiv{
+    width: 10%;
+}
+
+#titleTaskAlert,
+#descriptionTaskAlert{
+    margin-left: 5px;
+    font-size:11px;
+    color:red;
+}
+
 
 .todoListHeader{
     padding: 15px;
