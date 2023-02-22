@@ -1,4 +1,5 @@
-let vetor = []
+let arr = []
+
 let addButton = document.getElementById("addButton")
 let cancelButton = document.getElementById("cancelButton")
 let editButton = document.getElementById("editButton")
@@ -7,8 +8,22 @@ let listOfTasks = document.getElementById("listOfTasks")
 let titleTask = document.getElementById("titleTask")
 let descriptionTask = document.getElementById("descriptionTask")
 
+let pendingTasksButton = document.getElementById("pendingTasks")
+let completedTasksButton = document.getElementById("completedTasks")
+let clearAllButton = document.getElementById("clearAll")
+let allTasksButton = document.getElementById("allTasks")
+
+let pTask = document.getElementById('p-task')
+
+
 addButton.addEventListener('click',addTask)
 cancelButton.addEventListener("click",cancelEdit)
+pendingTasksButton.addEventListener("click",pendingTasks)
+completedTasksButton.addEventListener("click",completedTasks)
+clearAllButton.addEventListener("click",clearAll)
+allTasksButton.addEventListener("click",allTasks)
+
+getFromLocalStorage()
 
 function addTask () { 
     let obj = {
@@ -16,17 +31,25 @@ function addTask () {
         description: descriptionTask.value,
         checked: false
     }   
-    vetor.push(obj)
-    listTasks()
+    arr.push(obj)
+    addToLocalStorage(arr)
+    listTasks(arr)
     cleanInputs()
 }
 
-function listTasks(){
+function listTasks(list){
+
     // Clean all elements from listOfTasks
     listOfTasks.innerHTML = ""
 
-    // Map vetor array to create the list of tasks
-    vetor.map((task,ind) => {   
+    if(list.length === 0) {
+        pTask.innerHTML = "No tasks to show."
+        listOfTasks.appendChild(pTask)
+        return
+    }   
+
+    // Map arr to create the list of tasks
+    list.map((task,ind) => {   
 
         // Create taskCard div, define a css Class and put into listOfTasks
         let taskCard = document.createElement("div")
@@ -86,8 +109,8 @@ function listTasks(){
         listOfTasks.appendChild(taskCard)
         titleId.innerHTML = task.title
         descriptionIdP.innerHTML = task.description
-
-        if(vetor[ind].checked) checkUncheck(ind)
+        console.log()
+        if(task.checked) checkTheBox(ind)
     })
 }
 
@@ -96,8 +119,8 @@ function selectTask(id){
     editButton.style.display = "block"
     editButton.setAttribute("onclick",`editTask(${id})`)
     addButton.style.display = "none"
-    titleTask.value = vetor[id].title
-    descriptionTask.value = vetor[id].description
+    titleTask.value = arr[id].title
+    descriptionTask.value = arr[id].description
 }
 
 function cancelEdit(){
@@ -108,15 +131,17 @@ function cancelEdit(){
 }
 
 function editTask(id){
-    vetor[id].title = titleTask.value
-    vetor[id].description = descriptionTask.value
+    arr[id].title = titleTask.value
+    arr[id].description = descriptionTask.value
     cancelEdit()
-    listTasks()
+    addToLocalStorage(arr)
+    listTasks(arr)
 }
 
 function deleteTask(id){
-    vetor.splice(id,1)
-    listTasks()
+    arr.splice(id,1)
+    addToLocalStorage(arr)
+    listTasks(arr)
 }
 
 function cleanInputs(){
@@ -127,21 +152,62 @@ function cleanInputs(){
 function markCheckBox(e){
     let id = (e.target.id).split('-')
     id = id[1]
-    checkUncheck(id)
-    listTasks()
-}
-
-function checkUncheck(id){
     let checkedCheckBoxTemp = document.getElementById(`checkedCheckBox-${id}`)
     let taskCardTemp = document.getElementById(`taskCard-${id}`)
+
     if(checkedCheckBoxTemp.style.display === "none") {
         checkedCheckBoxTemp.style.display = "block"
         taskCardTemp.classList.add("textMarked")
-        vetor[id].checked = true
-        console.log(vetor)
+        arr[id].checked = true
     }else{
         checkedCheckBoxTemp.style.display = "none"
         taskCardTemp.classList.remove("textMarked")
-        vetor[id].checked = false
-    }   
+        arr[id].checked = false
+    }     
+    listTasks(arr)
+    addToLocalStorage(arr)
+}
+
+function checkTheBox(id){
+    let checkedCheckBoxTemp = document.getElementById(`checkedCheckBox-${id}`)
+    let taskCardTemp = document.getElementById(`taskCard-${id}`)
+    checkedCheckBoxTemp.style.display = "block"
+    taskCardTemp.classList.add("textMarked")
+}
+
+function pendingTasks(){
+    let arrTemp = arr.filter(obj => obj.checked === false)
+    listTasks(arrTemp)
+}
+
+function completedTasks(){
+    let arrTemp = arr.filter(obj => obj.checked === true)
+    listTasks(arrTemp)
+}
+
+function allTasks(){
+    listTasks(arr)
+}
+
+function clearAll(){
+    arr = []
+    addToLocalStorage(arr)
+    listTasks(arr)
+}
+
+function addToLocalStorage(arr){
+    localStorage.setItem('database',JSON.stringify(arr))
+}
+
+function verifyLocalStorage(){
+    return localStorage.getItem('database') == null ? false : true;
+}
+
+function getFromLocalStorage(){
+    if(!verifyLocalStorage()){
+        return
+    }
+
+    arr = JSON.parse(localStorage.getItem('database'))
+    listTasks(arr)
 }

@@ -141,3 +141,12 @@ main{
 .textMarked p{
     text-decoration-line: line-through;
 }
+
+#allTasks,
+#pendingTasks,
+#completedTasks,
+#clearAll
+{
+    padding: 2px;
+    cursor: pointer;
+}
