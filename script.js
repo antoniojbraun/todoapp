@@ -6,7 +6,10 @@ let editButton = document.getElementById("editButton")
 
 let listOfTasks = document.getElementById("listOfTasks")
 let titleTask = document.getElementById("titleTask")
+let titleTaskAlert = document.getElementById("titleTaskAlert")
 let descriptionTask = document.getElementById("descriptionTask")
+let descriptionTaskAlert = document.getElementById("descriptionTaskAlert")
+
 
 let pendingTasksButton = document.getElementById("pendingTasks")
 let completedTasksButton = document.getElementById("completedTasks")
@@ -26,6 +29,15 @@ allTasksButton.addEventListener("click",allTasks)
 getFromLocalStorage()
 
 function addTask () { 
+    let verifyInputsResult = verifyInputs()
+    if(!verifyInputsResult.status){
+        window[verifyInputsResult.input].focus()
+        window[verifyInputsResult.input+"Alert"].removeAttribute('hidden')
+        return
+    }
+    titleTaskAlert.setAttribute("hidden","hidden")
+    descriptionTaskAlert.setAttribute("hidden","hidden")
+
     let obj = {
         title: titleTask.value,
         description: descriptionTask.value,
@@ -36,6 +48,7 @@ function addTask () {
     listTasks(arr)
     cleanInputs()
 }
+
 
 function listTasks(list){
 
@@ -210,4 +223,27 @@ function getFromLocalStorage(){
 
     arr = JSON.parse(localStorage.getItem('database'))
     listTasks(arr)
+}
+
+
+function verifyInputs(){
+    let result = {
+        status: true,
+        input: "",
+        field: ""
+    }
+    if(titleTask.value == ""){
+        return result = {
+            status:false,
+            field:"Title",
+            input: "titleTask"
+        }
+    }else if(descriptionTask.value == ""){
+        return result = {
+            status:false,
+            field:"Description",
+            input: "descriptionTask"
+        }
+    }
+    return result
 }
